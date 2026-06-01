@@ -1,0 +1,21 @@
+        ### - - - Task - - - ###
+# - Increase http requests speed
+with session
+# - Refactor back end to store class objects
+rather than the front end
+# - Drop down menu for the bars
+# - Entry box for gp
+
+------  ------  ------    ------
+
+ IMG     IMG     IMG       Bar
+
+------  ------  ------    ------
+ Name    Name    Name       GP
+------  ------  ------    ------
+  Gp      Gp      GP       P/H
+------  ------  ------    ------
+  Qty     Qty    Qty      Profit
+------  ------  ------    ------
+ Total   Total  Total      PP/H
+------  ------  ------    ------
