@@ -3,7 +3,7 @@ import Back
 from PIL import ImageTk,Image
 from io import BytesIO
 
-ids = [453,440,444,447,449,451]
+ids = [453,440,444,447,449,451,952]
 
 root = tk.Tk()
 root.geometry("500x300")
