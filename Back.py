@@ -26,6 +26,15 @@ def fetch_item_price(iid):
     item_price = data['item']['current']['price']
     return gp_convert(item_price)
 
+# - Fetches the item name of a specified item id - #
+def fetch_item_name(iid):
+    grab = requests.get("https://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item="+str(iid))
+    data = grab.json()
+
+    # - Parsing data
+    item_name = data['item']['name']
+    return item_name
+
 def fetch_item_pic(iid):
     grab = requests.get("https://secure.runescape.com/m=itemdb_oldschool/1779877772236_obj_sprite.gif?id="+str(iid))
     #takes the data grabbed and turns it into bytes
