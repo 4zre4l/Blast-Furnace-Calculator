@@ -1,6 +1,7 @@
+from io import BytesIO
 import requests
 import math
-import time
+from PIL import ImageTk, Image
 
 # - Converts the common strings used in OSRS to numbers - #
 def gp_convert(string):
@@ -24,6 +25,14 @@ def fetch_item_price(iid):
     # - Parsing data
     item_price = data['item']['current']['price']
     return gp_convert(item_price)
+
+def fetch_item_pic(iid):
+    grab = requests.get("https://secure.runescape.com/m=itemdb_oldschool/1779877772236_obj_sprite.gif?id="+str(iid))
+    data = Image.open(BytesIO(grab.content))
+
+    # - Parsing data
+    return data
+
 
 # - Calculates the sum of current item value and outputs helpful info - #
 def calculate(str_amount):
@@ -52,6 +61,6 @@ def run():
         print("")
         print("")
         print("")
-        
-run()
 
+if __name__ == "__main__":
+    run()
