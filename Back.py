@@ -28,6 +28,7 @@ def fetch_item_price(iid):
 
 def fetch_item_pic(iid):
     grab = requests.get("https://secure.runescape.com/m=itemdb_oldschool/1779877772236_obj_sprite.gif?id="+str(iid))
+    #takes the data grabbed and turns it into bytes
     data = Image.open(BytesIO(grab.content))
 
     # - Parsing data
