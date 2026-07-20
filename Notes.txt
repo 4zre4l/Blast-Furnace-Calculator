@@ -6,16 +6,18 @@ rather than the front end
 # - Drop down menu for the bars
 # - Entry box for gp
 
-------  ------  ------  ------  ------
+----------------------
+ Gp:                 ¦
+------  ------  ------
 
-IMG     IMG     IMG     COAL    Bar
+IMG     COAL    Bar
 
-------  ------  ------  ------  ------
-Name    Name    Name    Coal    GP
-------  ------  ------  ------  ------
-Gp      Gp      GP      GP      P/H
-------  ------  ------  ------  ------
-Qty     Qty     Qty     Qty     Profit
-------  ------  ------  ------  ------
-Total   Total   Total   Total   PP/H
-------  ------  ------  ------  ------
+------  ------  ------
+Name    Coal    GP
+------  ------  ------
+GP      GP      P/H
+------  ------  ------
+Qty     Qty     Profit
+------  ------  ------
+Total   Total   PP/H
+------  ------  ------

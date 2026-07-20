@@ -79,17 +79,17 @@ def fetch_item_pic(iid):
 
 
 # - Calculates the sum of current item value and outputs helpful info - #
-def calculate(str_amount):
+def calculate(str_amount, ore, coal, coal_ratio):
     amount = gp_convert(str_amount)
     amount = int(amount)
-    coal = int(fetch_item_price(453))
-    runite = int(fetch_item_price(451))
-    one_total = math.floor(coal*4 + runite)
+    one_total = math.floor(coal.getPrice()*coal_ratio + ore.getPrice())
     r_amount = math.floor(amount/one_total)
-    c_amount = r_amount*4
-    print("With", str_amount, "gp, you can make", str(r_amount), "runite bars.")
-    print("Runite ore:", str(r_amount))
-    print("Coal:", str(c_amount))
+    c_amount = r_amount*coal_ratio
+    print(r_amount)
+    print(c_amount)
+    # print("With", str_amount, "gp, you can make", str(r_amount), ore.getName(), "bars.")
+    # print("Runite ore:", str(r_amount))
+    # print("Coal:", str(c_amount))
 
 def run():
     print("#################################")
