@@ -17,6 +17,42 @@ def gp_convert(string):
         string = string.translate(str.maketrans('', '', '.'))
     return string
 
+class Item:
+    def __init__(self, iid, icon, name, price):
+        self.iid = iid
+        self.icon = icon
+        self.name = name
+        self.price = price
+
+    def getIid(self):
+        return self.iid
+    def getIcon(self):
+        return self.icon
+    def getName(self):
+        return self.name
+    def getPrice(self):
+        return self.price
+
+    def setIid(self, iid):
+        self.iid = iid
+    def setIcon(self, icon):
+        self.icon = icon
+    def setName(self, name):
+        self.name = name
+    def setPrice(self, price):
+        self.price = price
+
+def fetch_items(iids):
+    items = []
+    with requests.Session() as s:
+        for iid in iids:
+            grab = s.get("https://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item="+str(iid))
+            data = grab.json()
+            link = s.get(data['item']['icon'])
+            parsed = Item(iid,Image.open(BytesIO(link.content)),data['item']['name'],data['item']['current']['price'])
+            items.append(parsed)
+    return items
+
 # - Fetches the item price of a specified item id - #
 def fetch_item_price(iid):
     grab = requests.get("https://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item="+str(iid))
