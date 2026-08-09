@@ -9,37 +9,28 @@ ids = [453,440,442,444,447,449,451,2351,2355,2353,2357,2359,2361,2363]
 items = fetch_items(ids)
 
 root = tk.Tk()
-root.geometry("300x400")
+root.geometry("500x500")
 
-bars = tk.Frame(root, background="blue",width=100)
-content = tk.Frame(root, background="red")
-gp = tk.Frame(content, background="green", height=50)
-info = tk.PanedWindow(content, background="yellow")
+bars = tk.Frame(root,bg="red")
+entry = tk.Frame(root,bg="blue")
+content = tk.Frame(root,bg="yellow")
 
+bars.grid(row=0, column=0, sticky="nesw", rowspan=2)
+entry.grid(row=0, column=1, sticky="nesw")
+content.grid(row=1, column=1, sticky="nesw")
 
-bars.pack(side = "left", fill = "both")
-content.pack(side = "right", expand = True, fill = "both")
-gp.pack(side="top", fill="x")
-info.pack(side="bottom", fill="both", expand=True)
+root.columnconfigure(0, weight=1)
+root.columnconfigure(1, weight=5)
 
-# class Display_Item(tk.Frame):
-#     def __init__(self,parent,item):
-#         tk.Frame.__init__(self,parent)
-#         self.parent = parent
-#         self.item_id = item.getIid()
-#         self.widgets(item)
-#     def widgets(self, item):
-#         self.name = tk.Label(self,text = item.getName())
-#         self.photo = ImageTk.PhotoImage(item.getIcon())
-#         self.img = tk.Label(self,image = self.photo)
-#         self.price = tk.Label(self,text = item.getPrice())
-#
-#         self.name.grid(row=2, column=1,sticky = "ew")
-#         self.img.grid(row = 1,column = 1,sticky = "ew")
-#         self.price.grid(row = 3,column = 1,sticky = "ew")
+root.rowconfigure(0, weight=1)
+root.rowconfigure(1, weight=5)
+
+# - Side Bar
+bars.columnconfigure(0, weight=1)
+
 class BarButton(tk.Button):
     def __init__(self, parent, bar):
-        tk.Button.__init__(self, parent)
+        tk.Button.__init__(self, parent, text=bar.getName())
         self.bar = bar
         self.text = bar.getName()
         self.photos = ImageTk.PhotoImage(bar.getIcon())
@@ -51,16 +42,13 @@ for item in items:
     if "bar" in item.getName():
         print(item.getName())
         button = BarButton(bars,item)
-        button.grid(row = counter, column = 0)
+        button.grid(row = counter, column = 0, sticky="nesw")
+        bars.rowconfigure(counter, weight=1)
 
+# - Entry bar
+amount = ""
+gpEntry = tk.Entry(entry,textvariable=amount)
 
-
-# counter=1
-# for item in items:
-#     id = Display_Item(root,item)
-#     id.grid(row = 1,column = counter,padx = 10,pady = 10)
-#     root.columnconfigure(counter,weight = 1)
-#     counter+=1
-# calculate(10000,items[1],items[0],1)
+gpEntry.grid(row=0, column=0, sticky="nesw")
 
 root.mainloop()
