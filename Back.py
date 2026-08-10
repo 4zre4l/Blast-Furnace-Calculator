@@ -5,6 +5,14 @@ from PIL import ImageTk, Image
 
 # - Converts the common strings used in OSRS to numbers - #
 def gp_convert(string):
+    if type(string) == int:
+        return string
+    if type(string) == str:
+        string = string.translate(str.maketrans('', '', ','))
+    if string == "0" or string == "":
+        return 0
+    if string[-1] == type(int) or string[-1].isdigit():
+        return string
     if type(string) == str:
         if string[-1] == "k":
             string = string.translate(str.maketrans('', '', 'k'))
@@ -82,17 +90,17 @@ def fetch_item_pic(iid):
 def calculate(str_amount, ore, coal, coal_ratio, bar):
     amount = gp_convert(str_amount.get())
     amount = int(amount)
-    one_total = math.floor(coal.getPrice()*coal_ratio + ore.getPrice())
+    one_total = math.floor(int(gp_convert(coal.getPrice()))*int(coal_ratio) + int(gp_convert(ore.getPrice())))
     r_amount = math.floor(amount/one_total)
-    oreTotal = r_amount * ore.getPrice()
+    oreTotal = r_amount * int(gp_convert(ore.getPrice()))
     c_amount = r_amount*coal_ratio
-    coalTotal = c_amount * coal.getPrice()
-    barValue = bar.getPrice()
+    coalTotal = c_amount * gp_convert(coal.getPrice())
+    barValue = int(gp_convert(bar.getPrice()))
     barProfit = (barValue-one_total)*r_amount
     data = {"oreName":str(ore.getName()),"orePrice":str(ore.getPrice()),"oreQuantity":str(r_amount),"oreTotal":str(oreTotal),
             "coalName":"Coal","coalPrice":str(coal.getPrice()),"coalQuantity":str(c_amount),"coalTotal":str(coalTotal),
             "barName":str(bar.getName()),"barPrice":str(bar.getPrice()),"barQuantity":str(r_amount),"barProfit":str(barProfit)}
-    print(data)
+    return (data)
 
 def run():
     print("#################################")
