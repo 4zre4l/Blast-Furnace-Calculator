@@ -1,4 +1,6 @@
 import tkinter as tk
+from unittest import case
+
 import Back
 from PIL import ImageTk,Image
 from io import BytesIO
@@ -10,9 +12,10 @@ items = fetch_items(ids)
 
 root = tk.Tk()
 root.geometry("500x500")
+root.title("Blast Furnace Calculator")
 
-bars = tk.Frame(root,bg="red")
-entry = tk.Frame(root,bg="blue")
+bars = tk.Frame(root)
+entry = tk.Frame(root, height=40)
 content = tk.Frame(root,bg="yellow")
 
 bars.grid(row=0, column=0, sticky="nesw", rowspan=2)
@@ -22,7 +25,6 @@ content.grid(row=1, column=1, sticky="nesw")
 root.columnconfigure(0, weight=1)
 root.columnconfigure(1, weight=5)
 
-root.rowconfigure(0, weight=1)
 root.rowconfigure(1, weight=1)
 
 # - Side Bar
@@ -41,6 +43,7 @@ class BarButton(tk.Button):
 def switchContent(bar):
     match bar.getName():
         case "Iron bar":
+            calculate(5000, items[1], items[0], 0, items[7])
             print(bar.getName())
             content.configure(bg="purple")
 
@@ -48,6 +51,7 @@ def switchContent(bar):
             print(bar.getName())
 
         case "Steel bar":
+            calculate(5000, items[1], items[0], 1, items[9])
             print(bar.getName())
 
         case "Gold bar":
@@ -73,9 +77,9 @@ for item in items:
 
 # - Entry bar
 amount = ""
-gpEntry = tk.Entry(entry,textvariable=amount)
+gpEntry = tk.Entry(entry,textvariable=amount, font=20)
 
-gpEntry.grid(row=0, column=0, sticky="nesw", padx=30, pady=30)
+gpEntry.grid(row=0, column=0, sticky="nesw", padx=20, pady=20)
 entry.columnconfigure(0, weight=1)
 
 root.mainloop()
