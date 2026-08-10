@@ -80,7 +80,7 @@ def fetch_item_pic(iid):
 
 # - Calculates the sum of current item value and outputs helpful info - #
 def calculate(str_amount, ore, coal, coal_ratio, bar):
-    amount = gp_convert(str_amount)
+    amount = gp_convert(str_amount.get())
     amount = int(amount)
     one_total = math.floor(coal.getPrice()*coal_ratio + ore.getPrice())
     r_amount = math.floor(amount/one_total)

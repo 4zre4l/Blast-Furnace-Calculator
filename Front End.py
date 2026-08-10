@@ -40,10 +40,22 @@ class BarButton(tk.Button):
         self.image = ImageTk.PhotoImage(bar.getIcon())
         self.configure(image=self.image)
 
+counter = 0
+for item in items:
+    counter += 1
+    if "bar" in item.getName():
+        button = BarButton(bars,item)
+        button.grid(row = counter, column = 0, sticky="nesw")
+        bars.rowconfigure(counter, weight=1)
+
+# - Content
+# Build out frame with no data then config inside each case
+
+
 def switchContent(bar):
     match bar.getName():
         case "Iron bar":
-            calculate(5000, items[1], items[0], 0, items[7])
+            calculate(gpEntry, items[1], items[0], 0, items[7])
             print(bar.getName())
             content.configure(bg="purple")
 
@@ -51,7 +63,7 @@ def switchContent(bar):
             print(bar.getName())
 
         case "Steel bar":
-            calculate(5000, items[1], items[0], 1, items[9])
+            calculate(gpEntry, items[1], items[0], 1, items[9])
             print(bar.getName())
 
         case "Gold bar":
@@ -65,15 +77,6 @@ def switchContent(bar):
 
         case "Runite bar":
             print(bar.getName())
-
-
-counter = 0
-for item in items:
-    counter += 1
-    if "bar" in item.getName():
-        button = BarButton(bars,item)
-        button.grid(row = counter, column = 0, sticky="nesw")
-        bars.rowconfigure(counter, weight=1)
 
 # - Entry bar
 amount = ""
