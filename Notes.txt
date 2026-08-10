@@ -10,7 +10,7 @@ rather than the front end /
  Gp:                 ¦
 ------  ------  ------
 
-IMG     COAL    Bar
+ORE     COAL    Bar
 
 ------  ------  ------
 Name    Coal    GP
